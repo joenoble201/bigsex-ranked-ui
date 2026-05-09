@@ -8,7 +8,7 @@ export default defineConfig({
   appType: 'spa',
   server: {
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api': 'https://bigsex-ranked-production.up.railway.app',
     },
   },
 })
