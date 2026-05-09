@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="bg" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#2a1408"/>
+      <stop offset="100%" stop-color="#0d0603"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e8c040" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#e8c040" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0d060"/>
+      <stop offset="50%" stop-color="#e8c040"/>
+      <stop offset="100%" stop-color="#c8920c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect width="64" height="64" rx="12" fill="url(#bg)"/>
+
+  <!-- Amber border -->
+  <rect x="1.5" y="1.5" width="61" height="61" rx="11" fill="none" stroke="#c8920c" stroke-width="1.5" stroke-opacity="0.7"/>
+
+  <!-- Glow behind symbol -->
+  <circle cx="32" cy="32" r="22" fill="url(#glow)"/>
+
+  <!-- Corner brackets (top-left) -->
+  <path d="M8 14 L8 8 L14 8" fill="none" stroke="#e8c040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.8"/>
+  <!-- Corner brackets (top-right) -->
+  <path d="M50 8 L56 8 L56 14" fill="none" stroke="#e8c040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.8"/>
+  <!-- Corner brackets (bottom-left) -->
+  <path d="M8 50 L8 56 L14 56" fill="none" stroke="#e8c040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.8"/>
+  <!-- Corner brackets (bottom-right) -->
+  <path d="M50 56 L56 56 L56 50" fill="none" stroke="#e8c040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.8"/>
+
+  <!-- ₽ symbol, hand-drawn as paths for crisp rendering -->
+  <text
+    x="32"
+    y="43"
+    text-anchor="middle"
+    font-family="Georgia, serif"
+    font-size="32"
+    font-weight="bold"
+    fill="url(#gold)"
+  >₽</text>
+
+  <!-- Subtle scanline overlay -->
+  <rect width="64" height="64" rx="12" fill="url(#bg)" fill-opacity="0.04"
+    style="background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px)"/>
+</svg>
