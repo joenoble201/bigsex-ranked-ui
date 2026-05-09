@@ -391,7 +391,7 @@ function BlackjackModal({ onClose, onBalanceUpdate }: { onClose: () => void; onB
     finally { setLoading(false) }
   }
 
-  const actionBtn = (label: string, fn: () => void): React.CSSProperties => ({
+  const actionBtn = (): React.CSSProperties => ({
     flex: 1, padding: '11px', cursor: loading ? 'not-allowed' : 'pointer',
     fontFamily: 'Rajdhani, sans-serif', fontWeight: 700, fontSize: 12, letterSpacing: '0.3em', textTransform: 'uppercase',
     background: 'transparent', border: '1px solid rgba(200,146,12,0.5)', color: '#c8920c', transition: 'all 0.15s',
@@ -446,9 +446,9 @@ function BlackjackModal({ onClose, onBalanceUpdate }: { onClose: () => void; onB
             <>
               {error && <div style={{ marginBottom: 12, padding: '8px 12px', border: '1px solid rgba(255,60,0,0.4)', color: '#ff5520', fontSize: 12, fontFamily: 'Rajdhani, sans-serif' }}>⚠ {error}</div>}
               <div style={{ display: 'flex', gap: 10 }}>
-                <button style={actionBtn('Hit', () => {})} disabled={loading} onClick={() => action('hit')}>Hit</button>
-                <button style={actionBtn('Stand', () => {})} disabled={loading} onClick={() => action('stand')}>Stand</button>
-                <button style={actionBtn('Double', () => {})} disabled={loading} onClick={() => action('double')}>Double</button>
+                <button style={actionBtn()} disabled={loading} onClick={() => action('hit')}>Hit</button>
+                <button style={actionBtn()} disabled={loading} onClick={() => action('stand')}>Stand</button>
+                <button style={actionBtn()} disabled={loading} onClick={() => action('double')}>Double</button>
               </div>
             </>
           )}
