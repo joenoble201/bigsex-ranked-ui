@@ -12,15 +12,75 @@ export class AuthService {
       method: 'POST',
       headers: { Authorization: `Basic ${credentials}` },
     })
-
     if (!res.ok) {
       const body = await res.json().catch(() => ({}))
       throw new Error(body.error ?? 'Invalid credentials')
     }
-
     const { token, memberId, username: uname } = await res.json()
     this.storeToken(token, remember)
     return { memberId, username: uname }
+  }
+
+  static async registerRequest(memberId: string): Promise<void> {
+    const res = await fetch('/api/auth/register/request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: memberId }),
+    })
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}))
+      throw new Error(body.error ?? `HTTP ${res.status}`)
+    }
+  }
+
+  static async registerConfirm(
+    memberId: string,
+    code: string,
+    password: string,
+  ): Promise<{ memberId: string; username: string }> {
+    const res = await fetch('/api/auth/register/confirm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: memberId, code, password }),
+    })
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}))
+      throw new Error(body.error ?? `HTTP ${res.status}`)
+    }
+    const { token, memberId: mid, username } = await res.json()
+    this.storeToken(token, false)
+    return { memberId: mid, username }
+  }
+
+  static async resetRequest(memberId: string): Promise<void> {
+    const res = await fetch('/api/auth/password/reset/request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: memberId }),
+    })
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}))
+      throw new Error(body.error ?? `HTTP ${res.status}`)
+    }
+  }
+
+  static async resetConfirm(
+    memberId: string,
+    code: string,
+    newPassword: string,
+  ): Promise<{ memberId: string; username: string }> {
+    const res = await fetch('/api/auth/password/reset/confirm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: memberId, code, newPassword }),
+    })
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}))
+      throw new Error(body.error ?? `HTTP ${res.status}`)
+    }
+    const { token, memberId: mid, username } = await res.json()
+    this.storeToken(token, false)
+    return { memberId: mid, username }
   }
 
   static storeToken(token: string, persist: boolean): void {
